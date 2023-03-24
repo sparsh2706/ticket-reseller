@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import Card from './components/Card';
 import AppHeader from './components/AppHeader';
+import EventTicketForm from './components/Seller/Form';
 
 const data = [
   {
@@ -17,12 +18,6 @@ const data = [
     title: 'Concert 2',
     description: 'Description of Concert 2',
   },
-  {
-    id: '3',
-    image: 'https://via.placeholder.com/80',
-    title: 'Concert 3',
-    description: 'Description of Concert 3',
-  },
 ];
 
 const App = () => {
@@ -34,6 +29,7 @@ const App = () => {
     <View>
       <AppHeader />
       <FlatList data={data} renderItem={renderItem} keyExtractor={(item) => item.id} />
+      <EventTicketForm />
     </View>
   );
 };
