@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Image, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Image, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 const EventTicketForm = () => {
     const [eventLink, setEventLink] = useState('');
@@ -24,45 +24,47 @@ const EventTicketForm = () => {
     }
 
     return (
-        <View>
-            <TextInput
-                style={styles.input}
-                placeholder="Event Link"
-                value={eventLink}
-                onChangeText={handleEventLinkChange}
-            />
-            {ticketImage && <Image style={styles.image} source={{ url: ticketImage }} />}
-            <TextInput 
-                style={styles.input}
-                placeholder="Event Name"
-                value={eventName}
-                onChangeText={setEventName}
-            />
-            <TextInput 
-                style={styles.input}
-                placeholder="Ticket Price"
-                value={ticketPrice}
-                onChangeText={setTicketPrice}
-                keyboardType="numeric"
-            />
-            <TextInput 
-                style={styles.input}
-                placeholder="Number of Tickets"
-                value={numTickets}
-                onChangeText={setNumTickets}
-                keyboardType="numeric"
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Number of Itemized Tickets"
-                value={numItemizedTickets}
-                onChangeText={setNumItemizedTickets}
-                keyboardType="numeric"
-            />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Event Link"
+                    value={eventLink}
+                    onChangeText={handleEventLinkChange}
+                />
+                {ticketImage && <Image style={styles.image} source={{ url: ticketImage }} />}
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Event Name"
+                    value={eventName}
+                    onChangeText={setEventName}
+                />
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Ticket Price"
+                    value={ticketPrice}
+                    onChangeText={setTicketPrice}
+                    keyboardType="numeric"
+                />
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Number of Tickets"
+                    value={numTickets}
+                    onChangeText={setNumTickets}
+                    keyboardType="numeric"
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Number of Itemized Tickets"
+                    value={numItemizedTickets}
+                    onChangeText={setNumItemizedTickets}
+                    keyboardType="numeric"
+                />
 
-            <Button title="Upload Ticket Image" onPress={() => {/* Code to read Images in PDF/JPG */}}/>
-            <Button title="Submit" onPress={handleSubmit} />
-        </View>
+                <Button title="Upload Ticket Image" onPress={() => {/* Code to read Images in PDF/JPG */}}/>
+                <Button title="Submit" onPress={handleSubmit} />
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 

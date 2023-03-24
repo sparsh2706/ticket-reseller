@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import Card from './components/Card';
 import AppHeader from './components/AppHeader';
