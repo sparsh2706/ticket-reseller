@@ -1,37 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { FlatList, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Card from './components/Card';
-import AppHeader from './components/AppHeader';
-import EventTicketForm from './components/Seller/Form';
+import Dashboard from './screens/Dashboard';
+import Sell from './screens/Sell';
+import Profile from './screens/Profile';
+import Footer from './components/Footer';
 
-const data = [
-  {
-    id: '1',
-    image: 'https://via.placeholder.com/80',
-    title: 'Concert 1',
-    description: 'Description of Concert 1',
-  },
-  {
-    id: '2',
-    image: 'https://via.placeholder.com/80',
-    title: 'Concert 2',
-    description: 'Description of Concert 2',
-  },
-];
+const Tab = createBottomTabNavigator();
 
-const App = () => {
-  const renderItem = ({item}) => (
-    <Card image={item.image} title={item.title} description={item.description} />
-  );
-
+export default function App() {
   return (
-    <View>
-      <AppHeader />
-      <FlatList data={data} renderItem={renderItem} keyExtractor={(item) => item.id} />
-      <EventTicketForm />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+            name="Dashboard" 
+            component={Dashboard}
+            options={{
+              tabBar: () => <Footer />,
+            }}
+          />
+        <Tab.Screen
+            name="Sell"
+            component={Sell}
+            options={{
+              tabBar: () => <Footer />,
+            }}
+          />
+        <Tab.Screen 
+            name="Profile" 
+            component={Profile}
+            options={{
+              tabBar: () => <Footer />,
+            }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
-};
-
-export default App;
+}

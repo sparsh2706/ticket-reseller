@@ -24,6 +24,7 @@ const EventTicketForm = () => {
     }
 
     return (
+        // TODO: Text bar doesnt go away with scrollable view
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View>
                 <TextInput
