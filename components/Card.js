@@ -1,47 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-const Card = ({ image, title, description }) => {
+const Card = ({ eventImage, minPrice, maxPrice, ticketQuantity, onPress }) => {
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: image }} style={styles.cardImage} />
-      <View style={styles.cardContent}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.cardDescription}>{description}</Text>
+    <TouchableOpacity onPress={onPress} style={styles.cardContainer}>
+      <Image source={eventImage} style={styles.eventImage} />
+      <View style={styles.ticketInfo}>
+        <Text style={styles.ticketQuantity}>{ticketQuantity} Tickets</Text>
+        <Text style={styles.ticketPrice}>
+          Rs.{minPrice} - Rs.{maxPrice}
+        </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    margin: 5,
+  cardContainer: {
+    borderWidth: 1,
+    borderColor: '#ddd',
     borderRadius: 5,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    marginBottom: 15,
   },
-  cardImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+  eventImage: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
   },
-  cardContent: {
-    marginLeft: 10,
+  ticketInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
   },
-  cardTitle: {
-    fontSize: 18,
+  ticketQuantity: {
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5,
   },
-  cardDescription: {
-    fontSize: 14,
-    color: '#555',
+  ticketPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

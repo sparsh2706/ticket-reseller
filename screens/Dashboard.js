@@ -1,29 +1,60 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 
-import Ticket from '../components/Ticket';
+import Card from '../components/Card';
 
 const Dashboard = () => {
   // Fetch tickets from the backend and store them in a state
   // For now, we'll use a sample ticket list
-  const tickets = [
+  const sampleEvents = [
     {
       id: 1,
-      eventName: 'Sample Event 1',
-      price: 100,
-      quantity: 2,
+      eventImage: require('../assets/sampleEventImage.jpg'),
+      minPrice: 50,
+      maxPrice: 200,
+      ticketQuantity: 5,
     },
-    // Add more tickets
+    {
+      id: 2,
+      eventImage: require('../assets/sampleEventImage.jpg'),
+      minPrice: 75,
+      maxPrice: 150,
+      ticketQuantity: 3,
+    },
+    {
+      id: 3,
+      eventImage: require('../assets/sampleEventImage.jpg'),
+      minPrice: 100,
+      maxPrice: 250,
+      ticketQuantity: 10,
+    },
   ];
 
+  const handleCardPress = (eventId) => {
+    console.log(`Card with event ID ${eventId} pressed`);
+  };
+
   return (
-    <View>
-      <Text>Dashboard</Text>
-      {tickets.map((ticket) => (
-        <Ticket key={ticket.id} ticket={ticket} />
+    <ScrollView contentContainerStyle={styles.container}>
+      {sampleEvents.map((event) => (
+        <Card
+          key={event.id}
+          eventImage={event.eventImage}
+          minPrice={event.minPrice}
+          maxPrice={event.maxPrice}
+          ticketQuantity={event.ticketQuantity}
+          onPress={() => handleCardPress(event.id)}
+        />
       ))}
-    </View>
-  );
+    </ScrollView>
+  )
+  
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+});
 
 export default Dashboard;
